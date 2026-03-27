@@ -105,3 +105,23 @@ class SwiGLU(nn.Module):
         return self.w2(silu(self.w1(x)) * self.w3(x))
     
 
+class RotaryPositionalEmbedding(nn.Module):
+    theta: float
+    d_k: int
+    max_seq_len: int
+    device: torch.device | None
+
+    def __init__(
+        self,
+        theta: float,
+        d_k: int,
+        max_seq_len: int,
+        device: torch.device | None = None
+    ) -> None:
+        super().__init__()
+        self.theta = theta
+        self.d_k = d_k
+        self.max_seq_len = max_seq_len
+
+    def forward(self, x: torch.Tensor, token_positions: torch.Tensor) -> torch.Tensor:
+        pass
